@@ -5,7 +5,12 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'frank': ['"Frank Ruhl Libre"', 'serif'],
+        'inter': ['"Inter"', 'sans-serif']
+      },
+    },
   },
   plugins: [],
 }
