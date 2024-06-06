@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import Logo from "../assets/logo-lipro.png";
+import { Link } from 'react-router-dom';
 
 const Login = () => {
     return (
@@ -9,7 +10,7 @@ const Login = () => {
                 <div className="lg:w-1/2 xl:w-5/12 p-6 sm:p-12">
                     <div className="mt-12 flex flex-col items-center">
                         <h1 className="text-2xl font-frank text-soft-blue xl:text-5xl font-bold mt-28">
-                            Sign in
+                            Sign In
                         </h1>
                         <div className="w-full flex-1 mt-3">
                             <div className="my-12 border-b text-center">
@@ -35,9 +36,7 @@ const Login = () => {
                             </div>
                             <div className="inline-block text-sm text-gray-600 tracking-wide font-medium bg-white transform translate-y-1/2">
                                 Don’t have an account?
-                                <a href="#" className="px-2 text-blue-600">
-                                    Sign up
-                                </a>
+                                <Link to="/register" className="px-2 text-blue-600">Sign up</Link>
                             </div>
                             <div>
                                 <a href="#" className="inline-block text-sm px-2 tracking-wide font-medium text-blue-600 transform translate-y-1/2">Forgot Password</a>
@@ -49,7 +48,7 @@ const Login = () => {
                 <div className="flex-1 bg-gradient-to-b from-bright-blue to-pale-blue text-center hidden lg:flex">
                     <div className="m-12 xl:m-16 w-full">
                         <center>
-                            <img src={Logo} className="mt-56 h-64" alt="Lipro" />
+                            <img src={Logo} className="mt-40 h-56" alt="Lipro" />
                         </center>
                     </div>
                 </div>
