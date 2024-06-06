@@ -32,20 +32,16 @@ const Login = () => {
                                         Log In
                                     </span>
                                 </button>
-                                <p className="mt-6 text-xs text-gray-600 text-center">
-                                    <a href="#" className="border-b border-gray-500 border-dotted">
-                                        Terms of Service
-                                    </a>
-                                    and its
-                                    <a href="#" className="border-b border-gray-500 border-dotted">
-                                        Privacy Policy
-                                    </a>
-                                </p>
                             </div>
-                                <div
-                                    className="leading-none px-2 inline-block text-sm text-gray-600 tracking-wide font-medium bg-white transform translate-y-1/2">
-                                    Or sign up with e-mail
-                                </div>
+                            <div className="inline-block text-sm text-gray-600 tracking-wide font-medium bg-white transform translate-y-1/2">
+                                Don’t have an account?
+                                <a href="#" className="px-2 text-blue-600">
+                                    Sign up
+                                </a>
+                            </div>
+                            <div>
+                                <a href="#" className="inline-block text-sm px-2 tracking-wide font-medium text-blue-600 transform translate-y-1/2">Forgot Password</a>
+                            </div>
                             </div>
                         </div>
                     </div>
