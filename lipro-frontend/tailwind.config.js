@@ -6,6 +6,12 @@ export default {
   ],
   theme: {
     extend: {
+      colors: {
+        'bright-blue': '#40A2E3',
+        'pale-blue': '#DEF1FF',
+        'moderate-blue': '#40679E'
+
+      },
       fontFamily: {
         'frank': ['"Frank Ruhl Libre"', 'serif'],
         'inter': ['"Inter"', 'sans-serif']

@@ -3,7 +3,7 @@ import React from 'react';
 
 const Product = () => {
     return (
-        <div className="flex flex-col items-center bg-blue-200 min-h-screen py-12">
+        <div className="flex flex-col items-center bg-gradient-to-b from-pale-blue to-bright-blue min-h-screen py-12">
             <h1 className="text-4xl font-frank font-bold mb-12">Product</h1>
             <div className="flex justify-around w-full max-w-6xl">
                 <div className="flex flex-col items-center w-1/3 px-4">
