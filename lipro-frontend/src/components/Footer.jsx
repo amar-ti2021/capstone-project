@@ -4,8 +4,7 @@ import React from 'react';
 const Footer = () => {
     return (
         <div className="py-8 bg-pale-blue">
-            <div className="border-t border-gray-400 my-4"></div>
-            <p className="text-center text-blue-600 font-frank font-bold">Life Productively © 2024</p>
+            <p className="text-center text-soft-blue text-xl opacity-75 tracking-widest font-frank font-bold">Life Productively © 2024</p>
         </div>
     );
 };
