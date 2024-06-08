@@ -8,7 +8,7 @@ const Register = () => {
         <div className="min-h-screen bg-gray-100 text-gray-900 flex justify-center">
             <div className="max-w-screen-xl m-0 sm:m-10 bg-white shadow sm:rounded-lg flex justify-center flex-1">
                 <div className="lg:w-1/2 xl:w-5/12 p-6 sm:p-12">
-                    <div className="mt-12 flex flex-col items-center">
+                    <div className="mt-5 flex flex-col items-center">
                         <h1 className="text-2xl font-frank text-soft-blue xl:text-5xl font-bold mt-28">
                             Sign Up
                         </h1>
@@ -42,10 +42,10 @@ const Register = () => {
                         </div>
                     </div>
                 </div>
-                <div className="flex-1 bg-gradient-to-b from-bright-blue to-pale-blue text-center hidden lg:flex">
+                <div className="flex-1 bg-gradient-to-b from-bright-blue to-pale-blue text-center hidden sm:rounded-lg lg:flex">
                     <div className="m-12 xl:m-16 w-full">
                         <center>
-                            <img src={Logo} className="mt-40 h-56" alt="Lipro" />
+                            <img src={Logo} className="mt-36 h-64" alt="Lipro" />
                         </center>
                     </div>
                 </div>
