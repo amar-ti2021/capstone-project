@@ -13,7 +13,7 @@ const Register = () => {
                             Sign Up
                         </h1>
                         <div className="w-full flex-1 mt-3">
-                            <div className="my-12 border-b text-center">
+                            <div className="my-12 text-center">
                             <div className="mx-auto max-w-xs">
                                 <input
                                     className="px-8 py-4 w-full rounded-xl font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
