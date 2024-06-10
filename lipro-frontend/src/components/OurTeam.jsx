@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import React from 'react';
 
 const TeamMember = ({ name, role, image }) => {
@@ -24,7 +26,7 @@ const OurTeam = () => {
     ];
 
     return (
-        <div id="our-team" className="flex flex-col items-center justify-center bg-gradient-to-b from-bright-blue to-pale-blue min-h-screen py-12">
+        <div id="our-team" className="flex flex-col items-center justify-center bg-gradient-to-b from-soft-blue3 to-pale-blue min-h-screen py-12">
             <h1 className="text-4xl text-white drop-shadow-md font-frank font-bold">Our Team</h1>
             <section className="py-24">
                 <div className="flex flex-wrap justify-center">

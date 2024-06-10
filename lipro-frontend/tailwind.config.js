@@ -11,7 +11,9 @@ export default {
         'pale-blue': '#DEF1FF',
         'moderate-blue': '#40679E',
         'soft-blue': '#4AA7E5',
-        'pure-blue': '#008DDA'
+        'pure-blue': '#008DDA',
+        'soft-blue2': '#8CC8F0',
+        'soft-blue3': '#9DD0F3'
 
       },
       fontFamily: {

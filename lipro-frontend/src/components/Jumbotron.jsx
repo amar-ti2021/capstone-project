@@ -4,7 +4,7 @@ import React from 'react';
 const Jumbotron = () => {
     return (
         <div id="getStarted">
-            <section className="bg-center bg-gradient-to-b from-bright-blue to-pale-blue">
+            <section className="bg-center bg-gradient-to-b from-bright-blue to-soft-blue2">
                 <div className="px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-56">
                     <h1 className="mb-4 text-4xl font-frank font-extrabold drop-shadow-lg tracking-tight leading-none text-white md:text-5xl lg:text-6xl">Life Productively</h1>
                     <p className="mb-8 text-lg font-inter font-normal text-white italic lg:text-xl sm:px-16 lg:px-48">Optimize Every Minute with Smart Planning and Seamless Time Management for Ultimate Productivity</p>
