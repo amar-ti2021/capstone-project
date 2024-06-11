@@ -20,13 +20,17 @@ class AuthController {
       const user = await Auth.login("email", email);
 
       if (!user) {
-        return res.status(401).json({ error: "Invalid email or password" });
+        return res
+          .status(401)
+          .json({ status: "fail", error: "Invalid email or password" });
       }
 
       const result = await bcrypt.compare(password, user.password);
 
       if (!result) {
-        return res.status(401).json({ error: "Invalid email or password" });
+        return res
+          .status(401)
+          .json({ status: "fail", error: "Invalid email or password" });
       }
 
       const token = jwt.sign(
@@ -35,10 +39,14 @@ class AuthController {
         { expiresIn: "1d" }
       );
 
-      res.status(200).json({ message: "Authentication successful", token });
+      res.status(200).json({
+        status: "success",
+        message: "Authentication successful",
+        token,
+      });
     } catch (error) {
       console.error(error);
-      res.status(500).json({ error: "Internal server error" });
+      res.status(500).json({ status: "fail", error: "Internal server error" });
     }
   }
 
@@ -62,6 +70,7 @@ class AuthController {
 
     if (data.errors) {
       const response = {
+        status: "fail",
         messages: "Validation Error",
         errors: data.errors,
       };
@@ -75,12 +84,15 @@ class AuthController {
     });
     if (user) {
       const response = {
+        status: "success",
         message: `Data of ${data.email} stored successfully`,
         data: user,
       };
       return res.status(201).json(response);
     }
-    return res.status(500).json({ message: "Internal server error" });
+    return res
+      .status(500)
+      .json({ status: "fail", message: "Internal server error" });
   }
 }
 
