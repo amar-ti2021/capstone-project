@@ -1,9 +1,37 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { useState } from 'react';
 import Logo from "../assets/logo-lipro.png";
-import { Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const Register = () => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const navigate = useNavigate();
+
+    const handleRegister = async (e) => {
+        e.preventDefault();
+        try {   
+            const response = await fetch('http://localhost:3000/api/v1/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, password }),  
+            });
+            const data = await response.json();
+            if (response.ok) {
+                // Registrasi berhasil, arahkan ke halaman Login
+                console.log('Registrasi berhasil:', data);
+                navigate('/login');
+            } else {
+                // Registrasi gagal, menampilkan pesan error
+                console.error('Registrasi gagal:', data);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+
     return (
         <div className="min-h-screen bg-gray-100 text-gray-900 flex justify-center">
             <div className="max-w-screen-xl m-0 sm:m-10 bg-white shadow sm:rounded-lg flex justify-center flex-1">
@@ -14,30 +42,39 @@ const Register = () => {
                         </h1>
                         <div className="w-full flex-1 mt-3">
                             <div className="my-12 text-center">
-                            <div className="mx-auto max-w-xs">
-                                <input
-                                    className="px-8 py-4 w-full rounded-xl font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
-                                    type="email" placeholder="Email" />
-                                <input
-                                    className="w-full px-8 py-4 rounded-xl font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
-                                    type="password" placeholder="Password" />
-                                <button
-                                    className="mt-5 tracking-wide font-semibold bg-bright-blue text-gray-100 w-full py-4 rounded-full hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
-                                    <svg className="w-6 h-6 -ml-2" fill="none" stroke="currentColor" strokeWidth="2"
-                                        strokeLinecap="round" strokeLinejoin="round">
-                                        <path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
-                                        <circle cx="8.5" cy="7" r="4" />
-                                        <path d="M20 8v6M23 11h-6" />
-                                    </svg>
-                                    <span className="ml-3">
-                                        Sign Up
-                                    </span>
-                                </button>
-                            </div>
-                            <div className="inline-block text-sm text-gray-600 tracking-wide font-medium bg-white transform translate-y-1/2">
-                                Have an account?
-                                <Link to="/login" className="px-2 text-blue-600">Sign In</Link>
-                            </div>
+                                <form onSubmit={handleRegister} className="mx-auto max-w-xs">
+                                    <input
+                                        className="px-8 py-4 w-full rounded-xl font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
+                                        type="email"
+                                        placeholder="Email"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                    />
+                                    <input
+                                        className="w-full px-8 py-4 rounded-xl font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
+                                        type="password"
+                                        placeholder="Password"
+                                        value={password}
+                                        onChange={(e) => setPassword(e.target.value)}
+                                    />
+                                    <button
+                                        type="submit"
+                                        className="mt-5 tracking-wide font-semibold bg-bright-blue text-gray-100 w-full py-4 rounded-full hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
+                                        <svg className="w-6 h-6 -ml-2" fill="none" stroke="currentColor" strokeWidth="2"
+                                            strokeLinecap="round" strokeLinejoin="round">
+                                            <path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+                                            <circle cx="8.5" cy="7" r="4" />
+                                            <path d="M20 8v6M23 11h-6" />
+                                        </svg>
+                                        <span className="ml-3">
+                                            Sign Up
+                                        </span>
+                                    </button>
+                                </form>
+                                <div className="inline-block text-sm text-gray-600 tracking-wide font-medium bg-white transform translate-y-1/2">
+                                    Have an account?
+                                    <Link to="/login" className="px-2 text-blue-600">Sign In</Link>
+                                </div>
                             </div>
                         </div>
                     </div>
