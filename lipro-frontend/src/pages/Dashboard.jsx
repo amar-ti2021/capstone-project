@@ -137,7 +137,7 @@ const Dashboard = () => {
 
             {isModalOpen && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-                    <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-md">
+                    <div className="bg-white p-6 mx-4 rounded-lg shadow-md w-full max-w-md">
                         <h2 className="text-xl font-semibold mb-4">Add Task</h2>
                         <form onSubmit={(e) => { e.preventDefault(); handleAddTask(); }}>
                             <div className="mb-4">
