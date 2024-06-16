@@ -228,9 +228,9 @@ const Dashboard = () => {
                     </div>
                 </div>
             </div>
-            <div className="bg-gradient-to-b from-soft-blue2 to-soft-blue3 pt-7 pb-10 md:p-28 xl:p-10">
+            <footer className="bg-gradient-to-b from-soft-blue2 to-soft-blue3 pt-7 pb-10 md:p-28 xl:p-10">
                 <p className="text-center text-xl text-moderate-blue font-frank font-semibold opacity-90">Life Productively © 2024</p>
-            </div>
+            </footer>
 
             {isModalOpen && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
