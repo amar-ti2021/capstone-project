@@ -114,62 +114,54 @@ const Dashboard = () => {
                             </li>
                         </ul>
                         <button 
-                            className="w-full mt-4 py-2 bg-blue-500 text-white font-semibold rounded-lg opacity-90 hover:opacity-80"
+                            className="w-full mt-4 py-2 bg-blue-500 text-white font-semibold font-inter rounded-lg opacity-90 hover:opacity-80"
                             onClick={openModal}
                         >
                             Add New Task
                         </button>
                     </div>
                     <div className="w-full md:w-2/3 bg-white p-4 rounded-lg shadow-md md:ml-4 mt-4 md:mt-0">
-                        <h3 className="text-lg font-semibold text-gray-700 mb-4">Time Sheet</h3>
-                        <div className="h-80 overflow-y-auto">
-                            <div className="bg-blue-500 text-white p-2 rounded mb-2">
-                                <p className="font-medium">Tugas 1</p>
-                                <p>08:00 - 10:00</p>
+                        <h3 className="text-xl font-semibold font-inter text-gray-700 mb-4">Time Sheet</h3>
+                        <div className="h-96 overflow-y-auto">
+                            <div className="bg-blue-500 text-white p-2 rounded mb-4">
+                                <p className="font-medium font-inter">Tugas 1</p>
+                                <p className='font-inter'>08:00 - 10:00</p>
                             </div>
-                            <div className="bg-blue-500 text-white p-2 rounded mb-2">
-                                <p className="font-medium">Tugas 1</p>
-                                <p>08:00 - 10:00</p>
+                            <div className="bg-blue-500 text-white p-2 rounded mb-4">
+                                <p className="font-medium font-inter">Tugas 1</p>
+                                <p className='font-inter'>08:00 - 10:00</p>
                             </div>
-                            <div className="bg-blue-500 text-white p-2 rounded mb-2">
-                                <p className="font-medium">Tugas 1</p>
-                                <p>08:00 - 10:00</p>
+                            <div className="bg-blue-500 text-white p-2 rounded mb-4">
+                                <p className="font-medium font-inter">Tugas 1</p>
+                                <p className='font-inter'>08:00 - 10:00</p>
                             </div>
-                            <div className="bg-blue-500 text-white p-2 rounded mb-2">
-                                <p className="font-medium">Tugas 1</p>
-                                <p>08:00 - 10:00</p>
+                            <div className="bg-blue-500 text-white p-2 rounded mb-4">
+                                <p className="font-medium font-inter">Tugas 1</p>
+                                <p className='font-inter'>08:00 - 10:00</p>
                             </div>
-                            <div className="bg-blue-500 text-white p-2 rounded mb-2">
-                                <p className="font-medium">Tugas 1</p>
-                                <p>08:00 - 10:00</p>
+                            <div className="bg-blue-500 text-white p-2 rounded mb-4">
+                                <p className="font-medium font-inter">Tugas 1</p>
+                                <p className='font-inter'>08:00 - 10:00</p>
                             </div>
-                            <div className="bg-blue-500 text-white p-2 rounded mb-2">
-                                <p className="font-medium">Tugas 1</p>
-                                <p>08:00 - 10:00</p>
+                            <div className="bg-blue-500 text-white p-2 rounded mb-4">
+                                <p className="font-medium font-inter">Tugas 1</p>
+                                <p className='font-inter'>08:00 - 10:00</p>
                             </div>
-                            <div className="bg-blue-500 text-white p-2 rounded mb-2">
-                                <p className="font-medium">Tugas 1</p>
-                                <p>08:00 - 10:00</p>
+                            <div className="bg-blue-500 text-white p-2 rounded mb-4">
+                                <p className="font-medium font-inter">Tugas 1</p>
+                                <p className='font-inter'>08:00 - 10:00</p>
                             </div>
-                            <div className="bg-blue-500 text-white p-2 rounded mb-2">
-                                <p className="font-medium">Tugas 1</p>
-                                <p>08:00 - 10:00</p>
+                            <div className="bg-blue-500 text-white p-2 rounded mb-4">
+                                <p className="font-medium font-inter">Tugas 1</p>
+                                <p className='font-inter'>08:00 - 10:00</p>
                             </div>
-                            <div className="bg-blue-500 text-white p-2 rounded mb-2">
-                                <p className="font-medium">Tugas 1</p>
-                                <p>08:00 - 10:00</p>
+                            <div className="bg-blue-500 text-white p-2 rounded mb-4">
+                                <p className="font-medium font-inter">Tugas 1</p>
+                                <p className='font-inter'>08:00 - 10:00</p>
                             </div>
-                            <div className="bg-blue-500 text-white p-2 rounded mb-2">
-                                <p className="font-medium">Tugas 1</p>
-                                <p>08:00 - 10:00</p>
-                            </div>
-                            <div className="bg-blue-500 text-white p-2 rounded mb-2">
-                                <p className="font-medium">Tugas 1</p>
-                                <p>08:00 - 10:00</p>
-                            </div>
-                            <div className="bg-blue-500 text-white p-2 rounded mb-2">
-                                <p className="font-medium">Tugas 1</p>
-                                <p>08:00 - 10:00</p>
+                            <div className="bg-blue-500 text-white p-2 rounded mb-4">
+                                <p className="font-medium font-inter">Tugas 1</p>
+                                <p className='font-inter'>08:00 - 10:00</p>
                             </div>
                         </div>
                     </div>
@@ -232,4 +224,4 @@ const Dashboard = () => {
     );
 };
 
-export default Dashboard;
+export default Dashboard;
