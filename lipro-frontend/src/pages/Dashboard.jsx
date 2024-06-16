@@ -46,7 +46,7 @@ const Dashboard = () => {
                             </li>
                         </ul>
                     </div>
-                    <button id="dropdownDividerButton" data-dropdown-toggle="dropdownDivider" className="text-white font-inter focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">Halo, Badar <svg className="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                    <button id="dropdownDividerButton" data-dropdown-toggle="dropdownDivider" className="text-white font-inter focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">Hello, Badar <svg className="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                         <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4"/>
                         </svg>
                     </button>
@@ -69,55 +69,55 @@ const Dashboard = () => {
                     </div>
                 </div>
             </nav>
-            <div className="max-w-screen-xl mx-auto p-4">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-                    <div className="bg-white p-6 rounded-lg shadow-md">
-                        <h2 className="text-lg font-semibold text-gray-700">In Progress</h2>
-                        <p className="text-gray-500">Tugas 1</p>
+            <div className="mx-auto p-6 bg-gradient-to-b from-bright-blue to-soft-blue2">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-7 mb-4 px-5 pt-16 pb-5 bg-white rounded-lg">
+                    <div className="bg-pure-blue p-6 rounded-lg shadow-md">
+                        <h2 className="text-lg font-semibold font-inter text-white">In Progress</h2>
+                        <p className="font-inter text-white">Tugas 1</p>
                     </div>
-                    <div className="bg-white p-6 rounded-lg shadow-md">
-                        <h2 className="text-lg font-semibold text-gray-700">Next Task</h2>
-                        <p className="text-gray-500">Belum Ada</p>
+                    <div className="bg-pure-blue p-6 rounded-lg shadow-md">
+                        <h2 className="text-lg font-semibold font-inter text-white">Next Task</h2>
+                        <p className="font-inter text-white">Not Yet</p>
                     </div>
-                    <div className="bg-white p-6 rounded-lg shadow-md">
-                        <h2 className="text-lg font-semibold text-gray-700">Done</h2>
-                        <p className="text-gray-500">Belum Ada</p>
+                    <div className="bg-pure-blue p-6 rounded-lg shadow-md">
+                        <h2 className="text-lg font-semibold font-inter text-white">Done</h2>
+                        <p className="font-inter text-white">Not Yet</p>
                     </div>
-                    <div className="bg-white p-6 rounded-lg shadow-md col-span-1 md:col-span-2">
-                        <h2 className="text-lg font-semibold text-gray-700">Total Working Hour</h2>
-                        <p className="text-gray-500">01 Jam 3 Menit</p>
+                    <div className="bg-pure-blue p-6 rounded-lg shadow-md col-span-1 md:col-span-2">
+                        <h2 className="text-lg font-semibold font-inter text-white">Total Working Hour</h2>
+                        <p className="font-inter text-white">01 Jam 3 Menit</p>
                     </div>
                 </div>
                 <div className="flex flex-col md:flex-row">
                     <div className="w-full md:w-1/3 bg-white p-4 rounded-lg shadow-md">
-                        <h3 className="text-lg font-semibold text-gray-700 mb-4">Task Lists</h3>
+                        <h3 className="text-xl font-inter font-semibold text-gray-700 mb-4">Task Lists</h3>
                         <ul>
-                            <li className="bg-gray-100 p-2 rounded mb-2">
-                                <p className="font-medium text-gray-700">Tugas 1</p>
-                                <p className="text-gray-500">08:00 - 10:00</p>
+                            <li className="bg-pure-blue p-2 rounded mb-2">
+                                <p className="font-medium font-inter text-white">Tugas 1</p>
+                                <p className="text-white font-inter">08:00 - 10:00</p>
                             </li>
-                            <li className="bg-gray-100 p-2 rounded mb-2">
-                                <p className="font-medium text-gray-700">Tugas 2</p>
-                                <p className="text-gray-500">Belum Dialokasikan</p>
+                            <li className="bg-pure-blue p-2 rounded mb-2">
+                                <p className="font-medium font-inter text-white">Tugas 2</p>
+                                <p className="text-white font-inter">Not Allocated</p>
                             </li>
-                            <li className="bg-gray-100 p-2 rounded mb-2">
-                                <p className="font-medium text-gray-700">Tugas 3</p>
-                                <p className="text-gray-500">Belum Dialokasikan</p>
+                            <li className="bg-pure-blue p-2 rounded mb-2">
+                                <p className="font-medium font-inter text-white">Tugas 3</p>
+                                <p className="text-white font-inter">Not Allocated</p>
                             </li>
-                            <li className="bg-gray-100 p-2 rounded mb-2">
-                                <p className="font-medium text-gray-700">Tugas 4</p>
-                                <p className="text-gray-500">Belum Dialokasikan</p>
+                            <li className="bg-pure-blue p-2 rounded mb-2">
+                                <p className="font-medium font-inter text-white">Tugas 4</p>
+                                <p className="text-white font-inter">Not Allocated</p>
                             </li>
-                            <li className="bg-gray-100 p-2 rounded mb-2">
-                                <p className="font-medium text-gray-700">Tugas 5</p>
-                                <p className="text-gray-500">Belum Dialokasikan</p>
+                            <li className="bg-pure-blue p-2 rounded mb-2">
+                                <p className="font-medium font-inter text-white">Tugas 5</p>
+                                <p className="text-white font-inter">Not Allocated</p>
                             </li>
                         </ul>
                         <button 
-                            className="w-full mt-4 py-2 bg-blue-500 text-white font-semibold rounded-lg"
+                            className="w-full mt-4 py-2 bg-blue-500 text-white font-semibold rounded-lg opacity-90 hover:opacity-80"
                             onClick={openModal}
                         >
-                            Tambah
+                            Add New Task
                         </button>
                     </div>
                     <div className="w-full md:w-2/3 bg-white p-4 rounded-lg shadow-md md:ml-4 mt-4 md:mt-0">
@@ -175,17 +175,17 @@ const Dashboard = () => {
                     </div>
                 </div>
             </div>
-            <footer className="bg-white py-4 mt-16">
-                <p className="text-center text-gray-500">Life Productively © 2024</p>
+            <footer className="bg-gradient-to-b from-soft-blue2 to-soft-blue3 pt-7 pb-10">
+                <p className="text-center text-xl text-moderate-blue font-frank font-semibold opacity-90">Life Productively © 2024</p>
             </footer>
 
             {isModalOpen && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-                    <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-md">
-                        <h2 className="text-xl font-semibold mb-4">Tambah Tugas</h2>
+                    <div className="bg-white p-6 mx-4 rounded-lg shadow-md w-full max-w-md">
+                        <h2 className="text-xl font-semibold mb-4">Add Task</h2>
                         <form onSubmit={(e) => { e.preventDefault(); handleAddTask(); }}>
                             <div className="mb-4">
-                                <label className="block text-gray-700">Masukan Tugas</label>
+                                <label className="block text-gray-700">Enter The Task</label>
                                 <input 
                                     type="text" 
                                     className="w-full p-2 border border-gray-300 rounded mt-2"
@@ -195,7 +195,7 @@ const Dashboard = () => {
                                 />
                             </div>
                             <div className="mb-4">
-                                <label className="block text-gray-700">Atur Waktu</label>
+                                <label className="block text-gray-700">Set A Time</label>
                                 <input 
                                     type="time" 
                                     className="w-full p-2 border border-gray-300 rounded mt-2"
@@ -213,16 +213,16 @@ const Dashboard = () => {
                             </div>
                             <button 
                                 type="submit"
-                                className="w-full py-2 bg-blue-500 text-white font-semibold rounded-lg"
+                                className="w-full py-2 bg-blue-500 text-white font-semibold rounded-lg hover:opacity-85"
                             >
-                                Tambah
+                                Add
                             </button>
                             <button 
                                 type="button"
-                                className="w-full py-2 mt-2 bg-gray-500 text-white font-semibold rounded-lg"
+                                className="w-full py-2 mt-2 bg-gray-500 text-white font-semibold rounded-lg hover:opacity-85"
                                 onClick={closeModal}
                             >
-                                Batal
+                                Cancel
                             </button>
                         </form>
                     </div>
@@ -232,4 +232,4 @@ const Dashboard = () => {
     );
 };
 
-export default Dashboard;
+export default Dashboard;
