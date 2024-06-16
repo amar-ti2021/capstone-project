@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom/client'
 import './index.css'
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import LandingPages from './pages/LandingPages.jsx'
+// import Dashboard from './pages/Dashboard.jsx'
 import Login from './pages/LogIn.jsx'
 import Register from './pages/Register.jsx'
 import ResetPassword from './pages/ResetPassword.jsx'
