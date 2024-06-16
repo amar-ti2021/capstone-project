@@ -69,7 +69,7 @@ const Dashboard = () => {
                     </div>
                 </div>
             </nav>
-            <div className="max-w-screen-xl mx-auto p-4">
+            <div className="max-w-screen-xl mx-auto p-4 bg-gradient-to-b from-bright-blue to-soft-blue2">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
                     <div className="bg-white p-6 rounded-lg shadow-md">
                         <h2 className="text-lg font-semibold text-gray-700">In Progress</h2>
@@ -131,8 +131,9 @@ const Dashboard = () => {
                     </div>
                 </div>
             </div>
-            <footer className="bg-white py-4 mt-16">
-                <p className="text-center text-gray-500">Life Productively © 2024</p>
+            <footer className="bg-gradient-to-b from-soft-blue2 to-soft-blue3 pt-10 pb-10">
+                <hr className="bg-white opacity-55 rounded-md mx-5 lg:my-7" />
+                <p className="text-center text-xl text-moderate-blue font-frank font-semibold opacity-90">Life Productively © 2024</p>
             </footer>
 
             {isModalOpen && (
