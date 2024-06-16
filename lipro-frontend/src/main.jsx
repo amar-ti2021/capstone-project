@@ -5,6 +5,7 @@ import './index.css'
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import LandingPages from './pages/LandingPages.jsx'
 import Dashboard from './pages/Dashboard.jsx'
+import Statistic from './pages/Statistic.jsx'
 import Login from './pages/LogIn.jsx'
 import Register from './pages/Register.jsx'
 import ResetPassword from './pages/ResetPassword.jsx'
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: <Dashboard />
+  },
+  {
+    path: "/statistic",
+    element: <Statistic />
   },
 ])
 
