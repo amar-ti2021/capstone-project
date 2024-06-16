@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Logo from "../assets/logo-lipro.png";
 import { Link } from 'react-router-dom';
 
@@ -28,6 +28,57 @@ const Dashboard = () => {
         closeModal();
     };
 
+    // time
+    const cTime = new Date().toLocaleTimeString();
+    const [time, setTime] = useState(cTime);
+
+    const updateTime = () => {
+        const newTime = new Date().toLocaleTimeString();
+        setTime(newTime);
+    }
+
+    useEffect(() => {
+        const timeInterval = setInterval(updateTime, 1000);
+        return () => {
+            clearInterval(timeInterval);
+        }
+    }, [time]);
+    
+    // date
+    const cDate = new Date().toLocaleDateString()
+    const [date, setDate] = useState(cDate)
+    
+    const updateDate = () =>{
+        const newDate = new Date().toLocaleDateString()
+        setDate(newDate)
+    }
+    
+    useEffect(() =>{
+        const dateInterval = setInterval(updateDate, 1000)
+        return () =>{
+            clearInterval(dateInterval)
+        }
+    
+    }, [date])
+    
+    // day
+    const cDay = new Date().getDay()
+    const [day, setDay] = useState(cDay)
+    const weekDays = ['Sunday', 'Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
+    
+    const updateDay = () =>{
+        const newDay = new Date().getDay()
+        setDay(newDay)
+    }
+    
+    useEffect(() =>{
+        const dayInterval = setInterval(updateTime, 1000)
+        return () =>{
+            clearInterval(dayInterval)
+        }
+    
+    }, [day])
+
     return (
         <div>
             <nav className="bg-bright-blue p-4">
@@ -46,7 +97,7 @@ const Dashboard = () => {
                             </li>
                         </ul>
                     </div>
-                    <button id="dropdownDividerButton" data-dropdown-toggle="dropdownDivider" className="text-white font-inter focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">Hello, Badar <svg className="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                    <button id="dropdownDividerButton" data-dropdown-toggle="dropdownDivider" className="text-white text-lg font-inter focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">Hello, Badar <svg className="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                         <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4"/>
                         </svg>
                     </button>
@@ -69,23 +120,33 @@ const Dashboard = () => {
                     </div>
                 </div>
             </nav>
-            <div className="mx-auto p-6 bg-gradient-to-b from-bright-blue to-soft-blue2">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-7 mb-4 px-5 pt-16 pb-5 bg-white rounded-lg">
-                    <div className="bg-pure-blue p-6 rounded-lg shadow-md">
-                        <h2 className="text-lg font-semibold font-inter text-white">In Progress</h2>
-                        <p className="font-inter text-white">Tugas 1</p>
+            <div className="mx-auto px-6 py-8 bg-gradient-to-b from-bright-blue to-soft-blue2">
+                <div className='bg-white rounded-lg'>
+                    <div className='flex flex-wrap items-center justify-between mx-auto'>
+                        <h3 className='text-lg font-inter font-semibold px-8 pt-4 md:px-8 md:py-4 md:text-xl'>{weekDays[day]}, {date}</h3>
+                        <h3 className='text-lg font-inter font-semibold px-8 py-2 md:px-8 md:py-4 md:text-xl'>{time}</h3>
                     </div>
-                    <div className="bg-pure-blue p-6 rounded-lg shadow-md">
-                        <h2 className="text-lg font-semibold font-inter text-white">Next Task</h2>
-                        <p className="font-inter text-white">Not Yet</p>
-                    </div>
-                    <div className="bg-pure-blue p-6 rounded-lg shadow-md">
-                        <h2 className="text-lg font-semibold font-inter text-white">Done</h2>
-                        <p className="font-inter text-white">Not Yet</p>
-                    </div>
-                    <div className="bg-pure-blue p-6 rounded-lg shadow-md col-span-1 md:col-span-2">
-                        <h2 className="text-lg font-semibold font-inter text-white">Total Working Hour</h2>
-                        <p className="font-inter text-white">01 Jam 3 Menit</p>
+                    <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-5 mb-4 px-7 pb-5">
+                        <div className="bg-pure-blue p-6 rounded-lg shadow-md">
+                            <h2 className="text-lg font-semibold font-inter text-white">In Progress</h2>
+                            <p className="font-inter text-white">Tugas 1</p>
+                        </div>
+                        <div className="bg-pure-blue p-6 rounded-lg shadow-md">
+                            <h2 className="text-lg font-semibold font-inter text-white">Next Task</h2>
+                            <p className="font-inter text-white">Not Yet</p>
+                        </div>
+                        <div className="bg-pure-blue p-6 rounded-lg shadow-md">
+                            <h2 className="text-lg font-semibold font-inter text-white">Done</h2>
+                            <p className="font-inter text-white">Not Yet</p>
+                        </div>
+                        <div className="bg-pure-blue p-6 rounded-lg shadow-md">
+                            <h2 className="text-lg font-semibold font-inter text-white underline">Total Working Hour</h2>
+                            <p className="font-inter text-white">01 Jam 3 Menit</p>
+                        </div>
+                        {/* <div className="bg-pure-blue p-6 rounded-lg shadow-md col-span-1 md:col-span-2">
+                            <h2 className="text-lg font-semibold font-inter text-white">Total Working Hour</h2>
+                            <p className="font-inter text-white">01 Jam 3 Menit</p>
+                        </div> */}
                     </div>
                 </div>
                 <div className="flex flex-col md:flex-row">
@@ -167,9 +228,9 @@ const Dashboard = () => {
                     </div>
                 </div>
             </div>
-            <footer className="bg-gradient-to-b from-soft-blue2 to-soft-blue3 pt-7 pb-10">
+            <div className="bg-gradient-to-b from-soft-blue2 to-soft-blue3 pt-7 pb-10 md:p-28 xl:p-10">
                 <p className="text-center text-xl text-moderate-blue font-frank font-semibold opacity-90">Life Productively © 2024</p>
-            </footer>
+            </div>
 
             {isModalOpen && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
