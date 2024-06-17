@@ -4,6 +4,12 @@ import Logo from "../assets/logo-lipro.png";
 import { Link } from 'react-router-dom';
 
 const Dashboard = () => {
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+    const toggleDropdown = () => {
+        setIsDropdownOpen(!isDropdownOpen);
+    };
+
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [taskName, setTaskName] = useState('');
     const [startTime, setStartTime] = useState('');
@@ -97,25 +103,28 @@ const Dashboard = () => {
                             </li>
                         </ul>
                     </div>
-                    <button id="dropdownDividerButton" data-dropdown-toggle="dropdownDivider" className="text-white text-lg font-inter focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">Hello, Badar <svg className="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4"/>
-                        </svg>
-                    </button>
+                    <div className="relative">
+                        <button 
+                            id="dropdownDividerButton" 
+                            className="text-white text-lg font-inter focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" 
+                            type="button"
+                            onClick={toggleDropdown}
+                        >
+                            Hello, Badar 
+                            <svg className="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4"/>
+                            </svg>
+                        </button>
 
-                    <div id="dropdownDivider" className="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
-                        <ul className="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDividerButton">
-                        <li>
-                            <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
-                        </li>
-                        <li>
-                            <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
-                        </li>
-                        <li>
-                            <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
-                        </li>
-                        </ul>
-                        <div className="py-2">
-                        <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Separated link</a>
+                        <div 
+                            id="dropdownDivider" 
+                            className={`absolute right-0 z-10 ${isDropdownOpen ? 'block' : 'hidden'} bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600`}
+                        >
+                            <ul className="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDividerButton">
+                                <li>
+                                    <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Logout</a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -129,7 +138,7 @@ const Dashboard = () => {
                     <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-5 mb-4 px-7 pb-5">
                         <div className="bg-pure-blue p-6 rounded-lg shadow-md">
                             <h2 className="text-lg font-semibold font-inter text-white">In Progress</h2>
-                            <p className="font-inter text-white">Tugas 1</p>
+                            <p className="font-inter text-white">Task 1</p>
                         </div>
                         <div className="bg-pure-blue p-6 rounded-lg shadow-md">
                             <h2 className="text-lg font-semibold font-inter text-white">Next Task</h2>
@@ -143,10 +152,6 @@ const Dashboard = () => {
                             <h2 className="text-lg font-semibold font-inter text-white underline">Total Working Hour</h2>
                             <p className="font-inter text-white">01 Jam 3 Menit</p>
                         </div>
-                        {/* <div className="bg-pure-blue p-6 rounded-lg shadow-md col-span-1 md:col-span-2">
-                            <h2 className="text-lg font-semibold font-inter text-white">Total Working Hour</h2>
-                            <p className="font-inter text-white">01 Jam 3 Menit</p>
-                        </div> */}
                     </div>
                 </div>
                 <div className="flex flex-col md:flex-row">
@@ -154,23 +159,23 @@ const Dashboard = () => {
                         <h3 className="text-xl font-inter font-semibold text-gray-700 mb-4">Task Lists</h3>
                         <ul>
                             <li className="bg-pure-blue p-2 rounded mb-2">
-                                <p className="font-medium font-inter text-white">Tugas 1</p>
+                                <p className="font-medium font-inter text-white">Task 1</p>
                                 <p className="text-white font-inter">08:00 - 10:00</p>
                             </li>
                             <li className="bg-pure-blue p-2 rounded mb-2">
-                                <p className="font-medium font-inter text-white">Tugas 2</p>
+                                <p className="font-medium font-inter text-white">Task 2</p>
                                 <p className="text-white font-inter">Not Allocated</p>
                             </li>
                             <li className="bg-pure-blue p-2 rounded mb-2">
-                                <p className="font-medium font-inter text-white">Tugas 3</p>
+                                <p className="font-medium font-inter text-white">Task 3</p>
                                 <p className="text-white font-inter">Not Allocated</p>
                             </li>
                             <li className="bg-pure-blue p-2 rounded mb-2">
-                                <p className="font-medium font-inter text-white">Tugas 4</p>
+                                <p className="font-medium font-inter text-white">Task 4</p>
                                 <p className="text-white font-inter">Not Allocated</p>
                             </li>
                             <li className="bg-pure-blue p-2 rounded mb-2">
-                                <p className="font-medium font-inter text-white">Tugas 5</p>
+                                <p className="font-medium font-inter text-white">Task 5</p>
                                 <p className="text-white font-inter">Not Allocated</p>
                             </li>
                         </ul>
@@ -185,43 +190,43 @@ const Dashboard = () => {
                         <h3 className="text-xl font-semibold font-inter text-gray-700 mb-4">Time Sheet</h3>
                         <div className="h-96 overflow-y-auto">
                             <div className="bg-blue-500 text-white p-2 rounded mb-4">
-                                <p className="font-medium font-inter">Tugas 1</p>
+                                <p className="font-medium font-inter">Task 1</p>
                                 <p className='font-inter'>08:00 - 10:00</p>
                             </div>
                             <div className="bg-blue-500 text-white p-2 rounded mb-4">
-                                <p className="font-medium font-inter">Tugas 1</p>
+                                <p className="font-medium font-inter">Task 2</p>
                                 <p className='font-inter'>08:00 - 10:00</p>
                             </div>
                             <div className="bg-blue-500 text-white p-2 rounded mb-4">
-                                <p className="font-medium font-inter">Tugas 1</p>
+                                <p className="font-medium font-inter">Task 3</p>
                                 <p className='font-inter'>08:00 - 10:00</p>
                             </div>
                             <div className="bg-blue-500 text-white p-2 rounded mb-4">
-                                <p className="font-medium font-inter">Tugas 1</p>
+                                <p className="font-medium font-inter">Task 4</p>
                                 <p className='font-inter'>08:00 - 10:00</p>
                             </div>
                             <div className="bg-blue-500 text-white p-2 rounded mb-4">
-                                <p className="font-medium font-inter">Tugas 1</p>
+                                <p className="font-medium font-inter">Task 5</p>
                                 <p className='font-inter'>08:00 - 10:00</p>
                             </div>
                             <div className="bg-blue-500 text-white p-2 rounded mb-4">
-                                <p className="font-medium font-inter">Tugas 1</p>
+                                <p className="font-medium font-inter">Task 6</p>
                                 <p className='font-inter'>08:00 - 10:00</p>
                             </div>
                             <div className="bg-blue-500 text-white p-2 rounded mb-4">
-                                <p className="font-medium font-inter">Tugas 1</p>
+                                <p className="font-medium font-inter">Task 7</p>
                                 <p className='font-inter'>08:00 - 10:00</p>
                             </div>
                             <div className="bg-blue-500 text-white p-2 rounded mb-4">
-                                <p className="font-medium font-inter">Tugas 1</p>
+                                <p className="font-medium font-inter">Task 8</p>
                                 <p className='font-inter'>08:00 - 10:00</p>
                             </div>
                             <div className="bg-blue-500 text-white p-2 rounded mb-4">
-                                <p className="font-medium font-inter">Tugas 1</p>
+                                <p className="font-medium font-inter">Task 9</p>
                                 <p className='font-inter'>08:00 - 10:00</p>
                             </div>
                             <div className="bg-blue-500 text-white p-2 rounded mb-4">
-                                <p className="font-medium font-inter">Tugas 1</p>
+                                <p className="font-medium font-inter">Task 10</p>
                                 <p className='font-inter'>08:00 - 10:00</p>
                             </div>
                         </div>
