@@ -50,7 +50,7 @@ const OurTeam = () => {
     return (
         <sec id="our-team" className="grid grid-cols-1 md:grid-cols-2 bg-gradient-to-b from-soft-blue3 to-pale-blue pb-20 xl:pt-4">
             <div className='p-10 md:pl-24 md:top-10'>
-                <h1 className="text-5xl text-white drop-shadow-md font-frank font-bold">Our Team</h1>
+                <h1 className="text-4xl text-white drop-shadow-md font-frank font-bold md:text-5xl lg:text-6xl">Our Team</h1>
                 <p className='text-white text-justify pt-3 md:font-inter md:font-base md:text-xl'>
                     Working here means you’ll interact with talented professionals, will be challenged to solve difficult problems and think in new and creative ways. 
                     Along the way, you may also make some new friends, have a lot of fun and enjoy opportunities.

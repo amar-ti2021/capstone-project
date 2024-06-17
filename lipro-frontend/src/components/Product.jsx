@@ -25,14 +25,14 @@ const Product = () => {
 
     return (
         <div id="product" className="flex flex-col items-center bg-gradient-to-b from-soft-blue2 to-soft-blue3 min-h-screen py-12">
-            <h1 className="text-4xl text-white drop-shadow-lg font-frank font-extrabold mb-20">Product</h1>
+            <h1 className="text-4xl text-white drop-shadow-lg font-frank font-bold mb-20 md:text-5xl lg:text-6xl">Product</h1>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {products.map((product, index) => (
-                    <div key={index} className="max-w-sm rounded overflow-hidden shadow-lg bg-white">
+                    <div key={index} className="max-w-72 rounded overflow-hidden shadow-lg bg-white opacity-90 md:max-w-80">
                         <img className="w-full h-48 object-cover" src={product.imgSrc} alt={product.title} />
-                        <div className="px-6 py-4">
-                            <div className="font-bold text-xl mb-2 text-center">{product.title}</div>
-                            <p className="text-gray-700 text-base">
+                        <div className="px-6 py-10">
+                            <div className="font-bold font-inter text-pure-blue text-xl mb-2 text-center underline">{product.title}</div>
+                            <p className="text-gray-700 text-base text-justify font-inter">
                                 {product.description}
                             </p>
                         </div>
