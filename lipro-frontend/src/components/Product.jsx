@@ -25,7 +25,7 @@ const Product = () => {
 
     return (
         <div id="product" className="flex flex-col items-center bg-gradient-to-b from-soft-blue2 to-soft-blue3 min-h-screen py-12">
-            <h1 className="text-4xl text-white drop-shadow-lg font-frank font-bold mb-20 md:text-5xl lg:text-6xl">Product</h1>
+            <h1 className="text-4xl text-white drop-shadow-lg font-frank font-bold mb-10 md:mb-20 md:text-5xl lg:text-6xl">Product</h1>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {products.map((product, index) => (
                     <div key={index} className="max-w-72 rounded overflow-hidden shadow-lg bg-white opacity-90 md:max-w-80">
