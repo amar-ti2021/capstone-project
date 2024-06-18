@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import Logo from '../assets/logo-lipro.png'
 import { Link, useNavigate } from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
 
 const Dashboard = () => {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -13,7 +15,7 @@ const Dashboard = () => {
     hours: 0,
     minutes: 0
   })
-  const [time, setTime] = useState(new Date().toLocaleTimeString('en-GB'))
+  const [time, setTime] = useState(new Date().toLocaleTimeString('en-US', { hour12: true, hourCycle: 'h12' }))
   const [date, setDate] = useState(new Date().toLocaleDateString())
   const [day, setDay] = useState(new Date().getDay())
   const navigate = useNavigate()
@@ -34,7 +36,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     const timeInterval = setInterval(
-      () => setTime(new Date().toLocaleTimeString('en-GB')),
+        () => setTime(new Date().toLocaleTimeString('en-US', { hour12: true, hourCycle: 'h12' })),
       1000
     )
     const dateInterval = setInterval(
@@ -127,7 +129,7 @@ const Dashboard = () => {
   }
 
   const formatTime = (hours, minutes) => {
-    return `${hours} Jam ${minutes} Menit`
+    return `${hours} Hours ${minutes} Minutes`
   }
 
   const getCurrentTaskStatus = () => {
@@ -267,18 +269,23 @@ const Dashboard = () => {
               Task Lists
             </h3>
             <ul>
-              {sortedTasks.map((task, index) => (
-                <li key={index} className="bg-pure-blue p-2 rounded mb-2">
-                  <p className="font-medium font-inter text-white">
-                    {task.task}
-                  </p>
-                  <p className="text-white font-inter">
-                    {new Date(task.start_time).toLocaleTimeString()} -{' '}
-                    {new Date(task.end_time).toLocaleTimeString()}
-                  </p>
-                </li>
-              ))}
-            </ul>
+                {sortedTasks.map((task, index) => (
+                    <li key={index} className="bg-pure-blue p-2 rounded mb-2 flex justify-between items-center">
+                    <div>
+                        <p className="font-medium font-inter text-white">
+                        {task.task}
+                        </p>
+                        <p className="text-white font-inter">
+                        {new Date(task.start_time).toLocaleTimeString('en-US', { hour12: true, hourCycle: 'h12' })} -{' '}
+                        {new Date(task.end_time).toLocaleTimeString('en-US', { hour12: true, hourCycle: 'h12' })}
+                        </p>
+                    </div>
+                    <button className="ml-4 bg-white text-pure-blue p-2 rounded">
+                        <FontAwesomeIcon icon={faCheck} />
+                    </button>
+                    </li>
+                ))}
+                </ul>
             <button
               className="w-full mt-4 py-2 bg-blue-500 text-white font-semibold font-inter rounded-lg opacity-90 hover:opacity-80"
               onClick={openModal}
