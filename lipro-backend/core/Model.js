@@ -25,14 +25,18 @@ class Model {
     }
   }
 
-  static async where(field, value) {
+  static async where(conditions) {
     try {
-      const query = `SELECT * FROM ${this.table} WHERE ${field} LIKE ?`;
-      const results = await db(query, [`%${value}%`]);
+      const keys = Object.keys(conditions);
+      const values = keys.map((key) => `%${conditions[key]}%`);
+      const whereClauses = keys.map((key) => `${key} LIKE ?`).join(" AND ");
+
+      const query = `SELECT * FROM ${this.table} WHERE ${whereClauses}`;
+      const results = await db(query, values);
 
       return results.length > 0 ? results : null;
     } catch (error) {
-      throw new Error("Error fetching records by condition: " + error.message);
+      throw new Error("Error fetching records by conditions: " + error.message);
     }
   }
 
