@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import Logo from "../assets/logo-lipro.png";
 import { Link, useNavigate } from 'react-router-dom';
@@ -17,29 +16,35 @@ const Dashboard = () => {
 
     const weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
-    const toggleMenu = () => setMenuOpen(!menuOpen);
-
-    const openModal = () => setIsModalOpen(true);
-    const closeModal = () => setIsModalOpen(false);
-
-    const handleAddTask = () => {
-        setTasks([...tasks, { name: taskName, start: startTime, end: endTime }]);
-        setTaskName('');
-        setStartTime('');
-        setEndTime('');
-        closeModal();
-    };
-
     useEffect(() => {
         const timeInterval = setInterval(() => setTime(new Date().toLocaleTimeString()), 1000);
         const dateInterval = setInterval(() => setDate(new Date().toLocaleDateString()), 1000);
         const dayInterval = setInterval(() => setDay(new Date().getDay()), 1000);
+
+        const storedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
+        setTasks(storedTasks);
+
         return () => {
             clearInterval(timeInterval);
             clearInterval(dateInterval);
             clearInterval(dayInterval);
         };
     }, []);
+
+    const toggleMenu = () => setMenuOpen(!menuOpen);
+
+    const openModal = () => setIsModalOpen(true);
+    const closeModal = () => setIsModalOpen(false);
+
+    const handleAddTask = () => {
+        const newTasks = [...tasks, { name: taskName, start: startTime, end: endTime }];
+        setTasks(newTasks);
+        localStorage.setItem('tasks', JSON.stringify(newTasks));
+        setTaskName('');
+        setStartTime('');
+        setEndTime('');
+        closeModal();
+    };
 
     const handleLogout = () => {
         localStorage.removeItem('token');
