@@ -34,7 +34,6 @@ const Dashboard = () => {
     }, []);
 
     const toggleMenu = () => setMenuOpen(!menuOpen);
-
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
 
@@ -65,6 +64,7 @@ const Dashboard = () => {
 
     const handleLogout = () => {
         localStorage.removeItem('token');
+        localStorage.removeItem('tasks');
         navigate('/');
     };
 
