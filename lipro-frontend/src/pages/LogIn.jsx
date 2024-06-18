@@ -22,6 +22,7 @@ const Login = () => {
             if (response.ok) {
                 // Login berhasil, arahkan ke halaman Dashboard
                 console.log('Login berhasil:', data);
+                localStorage.setItem('token', data.token);
                 navigate('/dashboard');
             } else {
                 // Login gagal, menampilkan pesan error
