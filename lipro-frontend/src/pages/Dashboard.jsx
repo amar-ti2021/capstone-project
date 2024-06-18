@@ -54,7 +54,7 @@ const Dashboard = () => {
         tasks.forEach(task => {
             const start = new Date(`1970-01-01T${task.start}:00`);
             const end = new Date(`1970-01-01T${task.end}:00`);
-            const diff = (end - start) / (1000 * 60);
+            const diff = (end - start) / (1000 * 60); // Selisih dalam menit
             totalMinutes += diff;
         });
     
@@ -173,7 +173,7 @@ const Dashboard = () => {
                             className="w-full mt-4 py-2 bg-blue-500 text-white font-semibold font-inter rounded-lg opacity-90 hover:opacity-80"
                             onClick={openModal}
                         >
-                            Add New Task
+                           Add New Task
                         </button>
                     </div>
                     <div className="w-full md:w-2/3 bg-white p-4 rounded-lg shadow-md md:ml-4 mt-4 md:mt-0">
