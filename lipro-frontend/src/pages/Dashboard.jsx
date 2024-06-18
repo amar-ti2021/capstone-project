@@ -9,6 +9,7 @@ const Dashboard = () => {
     const [startTime, setStartTime] = useState('');
     const [endTime, setEndTime] = useState('');
     const [tasks, setTasks] = useState([]);
+    const [totalWorkingHours, setTotalWorkingHours] = useState(0);
     const [time, setTime] = useState(new Date().toLocaleTimeString());
     const [date, setDate] = useState(new Date().toLocaleDateString());
     const [day, setDay] = useState(new Date().getDay());
@@ -23,6 +24,7 @@ const Dashboard = () => {
 
         const storedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
         setTasks(storedTasks);
+        calculateTotalWorkingHours(storedTasks);
 
         return () => {
             clearInterval(timeInterval);
@@ -44,11 +46,29 @@ const Dashboard = () => {
         setStartTime('');
         setEndTime('');
         closeModal();
+        calculateTotalWorkingHours(newTasks);
+    };
+
+    const calculateTotalWorkingHours = (tasks) => {
+        let totalMinutes = 0;
+        tasks.forEach(task => {
+            const start = new Date(`1970-01-01T${task.start}:00`);
+            const end = new Date(`1970-01-01T${task.end}:00`);
+            const diff = (end - start) / (1000 * 60);
+            totalMinutes += diff;
+        });
+        setTotalWorkingHours(totalMinutes);
     };
 
     const handleLogout = () => {
         localStorage.removeItem('token');
         navigate('/');
+    };
+
+    const formatTime = (minutes) => {
+        const hours = Math.floor(minutes / 60);
+        const mins = minutes % 60;
+        return `${hours} Jam ${mins} Menit`;
     };
 
     return (
@@ -102,7 +122,7 @@ const Dashboard = () => {
                         </div>
                         <div className="bg-pure-blue p-6 rounded-lg shadow-md">
                             <h2 className="text-lg font-semibold font-inter text-white underline">Total Working Hour</h2>
-                            <p className="font-inter text-white">01 Jam 3 Menit</p>
+                            <p className="font-inter text-white">{formatTime(totalWorkingHours)}</p>
                         </div>
                     </div>
                 </div>
