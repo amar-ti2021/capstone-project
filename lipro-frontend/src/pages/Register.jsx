@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import Logo from "../assets/logo-lipro.png";
 import { useNavigate, Link } from 'react-router-dom';
@@ -6,17 +5,23 @@ import { useNavigate, Link } from 'react-router-dom';
 const Register = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [rePassword, setRePassword] = useState('');
     const navigate = useNavigate();
 
     const handleRegister = async (e) => {
         e.preventDefault();
+        if (password !== rePassword) {
+            console.error('Passwords do not match');
+            return;
+        }
+
         try {   
             const response = await fetch('http://localhost:3000/api/v1/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ email, password }),  
+                body: JSON.stringify({ email, password, re_password: rePassword }),  
             });
             const data = await response.json();
             if (response.ok) {
@@ -56,6 +61,13 @@ const Register = () => {
                                         placeholder="Password"
                                         value={password}
                                         onChange={(e) => setPassword(e.target.value)}
+                                    />
+                                    <input
+                                        className="w-full px-8 py-4 rounded-xl font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
+                                        type="password"
+                                        placeholder="Confirm Password"
+                                        value={rePassword}
+                                        onChange={(e) => setRePassword(e.target.value)}
                                     />
                                     <button
                                         type="submit"
