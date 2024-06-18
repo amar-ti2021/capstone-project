@@ -8,7 +8,6 @@ import Dashboard from './pages/Dashboard.jsx'
 import Statistic from './pages/Statistic.jsx'
 import Login from './pages/LogIn.jsx'
 import Register from './pages/Register.jsx'
-import ResetPassword from './pages/ResetPassword.jsx'
 
 const router = createBrowserRouter([
   {
@@ -22,10 +21,6 @@ const router = createBrowserRouter([
   {
     path: "/register",
     element: <Register />
-  },
-  {
-    path: "/reset-password",
-    element: <ResetPassword />
   },
   {
     path: "/dashboard",
