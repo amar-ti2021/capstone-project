@@ -9,8 +9,8 @@ const Dashboard = () => {
     const [startTime, setStartTime] = useState('');
     const [endTime, setEndTime] = useState('');
     const [tasks, setTasks] = useState([]);
-    const [totalWorkingHours, setTotalWorkingHours] = useState(0);
-    const [time, setTime] = useState(new Date().toLocaleTimeString());
+    const [totalWorkingHours, setTotalWorkingHours] = useState({ hours: 0, minutes: 0 });
+    const [time, setTime] = useState(new Date().toLocaleTimeString('en-GB'));
     const [date, setDate] = useState(new Date().toLocaleDateString());
     const [day, setDay] = useState(new Date().getDay());
     const navigate = useNavigate();
@@ -18,7 +18,7 @@ const Dashboard = () => {
     const weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
     useEffect(() => {
-        const timeInterval = setInterval(() => setTime(new Date().toLocaleTimeString()), 1000);
+        const timeInterval = setInterval(() => setTime(new Date().toLocaleTimeString('en-GB')), 1000);
         const dateInterval = setInterval(() => setDate(new Date().toLocaleDateString()), 1000);
         const dayInterval = setInterval(() => setDay(new Date().getDay()), 1000);
 
@@ -57,19 +57,51 @@ const Dashboard = () => {
             const diff = (end - start) / (1000 * 60);
             totalMinutes += diff;
         });
-        setTotalWorkingHours(totalMinutes);
-    };
+    
+        const hours = Math.floor(totalMinutes / 60);
+        const minutes = totalMinutes % 60;
+        setTotalWorkingHours({ hours, minutes });
+    };    
 
     const handleLogout = () => {
         localStorage.removeItem('token');
         navigate('/');
     };
 
-    const formatTime = (minutes) => {
-        const hours = Math.floor(minutes / 60);
-        const mins = minutes % 60;
-        return `${hours} Jam ${mins} Menit`;
+    const formatTime = (hours, minutes) => {
+        return `${hours} Jam ${minutes} Menit`;
     };
+
+    const getCurrentTaskStatus = () => {
+        const currentTime = new Date();
+        const inProgressTasksCount = tasks.filter(task => {
+            const start = new Date(`1970-01-01T${task.start}:00`);
+            const end = new Date(`1970-01-01T${task.end}:00`);
+            return currentTime >= start && currentTime <= end;
+        }).length;
+        const nextTaskCount = tasks.filter(task => {
+            const start = new Date(`1970-01-01T${task.start}:00`);
+            return currentTime < start;
+        }).length;
+        const doneTasksCount = tasks.filter(task => {
+            const end = new Date(`1970-01-01T${task.end}:00`);
+            return currentTime > end;
+        }).length;
+
+        return {
+            inProgressTasksCount,
+            nextTaskCount,
+            doneTasksCount,
+        };
+    };
+
+    const { inProgressTasksCount, nextTaskCount, doneTasksCount } = getCurrentTaskStatus();
+
+    const sortedTasks = [...tasks].sort((a, b) => {
+        const aStart = new Date(`1970-01-01T${a.start}:00`);
+        const bStart = new Date(`1970-01-01T${b.start}:00`);
+        return aStart - bStart;
+    });
 
     return (
         <div>
@@ -110,19 +142,19 @@ const Dashboard = () => {
                     <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-5 mb-4 px-7 pb-5">
                         <div className="bg-pure-blue p-6 rounded-lg shadow-md">
                             <h2 className="text-lg font-semibold font-inter text-white">In Progress</h2>
-                            <p className="font-inter text-white">Task 1</p>
+                            <p className="font-inter text-white">{inProgressTasksCount} tasks</p>
                         </div>
                         <div className="bg-pure-blue p-6 rounded-lg shadow-md">
                             <h2 className="text-lg font-semibold font-inter text-white">Next Task</h2>
-                            <p className="font-inter text-white">Not Yet</p>
+                            <p className="font-inter text-white">{nextTaskCount} tasks</p>
                         </div>
                         <div className="bg-pure-blue p-6 rounded-lg shadow-md">
                             <h2 className="text-lg font-semibold font-inter text-white">Done</h2>
-                            <p className="font-inter text-white">Not Yet</p>
+                            <p className="font-inter text-white">{doneTasksCount} tasks</p>
                         </div>
                         <div className="bg-pure-blue p-6 rounded-lg shadow-md">
                             <h2 className="text-lg font-semibold font-inter text-white underline">Total Working Hour</h2>
-                            <p className="font-inter text-white">{formatTime(totalWorkingHours)}</p>
+                            <p className="font-inter text-white">{formatTime(totalWorkingHours.hours, totalWorkingHours.minutes)}</p>
                         </div>
                     </div>
                 </div>
@@ -130,7 +162,7 @@ const Dashboard = () => {
                     <div className="w-full md:w-1/3 bg-white p-4 rounded-lg shadow-md">
                         <h3 className="text-xl font-inter font-semibold text-gray-700 mb-4">Task Lists</h3>
                         <ul>
-                            {tasks.map((task, index) => (
+                            {sortedTasks.map((task, index) => (
                                 <li key={index} className="bg-pure-blue p-2 rounded mb-2">
                                     <p className="font-medium font-inter text-white">{task.name}</p>
                                     <p className="text-white font-inter">{task.start} - {task.end}</p>
@@ -147,7 +179,7 @@ const Dashboard = () => {
                     <div className="w-full md:w-2/3 bg-white p-4 rounded-lg shadow-md md:ml-4 mt-4 md:mt-0">
                         <h3 className="text-xl font-semibold font-inter text-gray-700 mb-4">Time Sheet</h3>
                         <div className="h-96 overflow-y-auto">
-                            {tasks.map((task, index) => (
+                            {sortedTasks.map((task, index) => (
                                 <div key={index} className="bg-blue-500 text-white p-2 rounded mb-4">
                                     <p className="font-medium font-inter">{task.name}</p>
                                     <p className='font-inter'>{task.start} - {task.end}</p>
