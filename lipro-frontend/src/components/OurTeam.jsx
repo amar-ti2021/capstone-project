@@ -1,8 +1,11 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React from 'react';
+import Badar from "../assets/badar.jpg";
+import Merliana from "../assets/merliana.jpg";
+import Amar from "../assets/amar.jpg";
 
-const TeamMember = ({ name, role, image }) => {
+const TeamMember = ({ name, role, image, linkedin, instagram, github }) => {
     return (
         <div className="grid grid-cols-2 items-center ml-10 xl:ml-16">
             <div className="relative mb-6 pt-4 md:pt-12">
@@ -13,38 +16,65 @@ const TeamMember = ({ name, role, image }) => {
                 />
             </div>
             <div className='pt-5'>
-                    <h4 className="text-lg font-inter font-semibold text-gray-900 ml-5 capitalize transition-all duration-500 group-hover:text-indigo-600 md:ml-4 md:text-xl xl:ml-0">{name}</h4>
-                    <span className="text-md text-gray-500 font-inter ml-5 block transition-all duration-500 group-hover:text-gray-900 md:ml-4 md:text-xl xl:ml-0">{role}</span>
-                    <div className='flex ml-5 pt-10 md:ml-4 xl:ml-0'>
-                        <a href="#" className="text-gray-500 hover:text-blue-500 dark:hover:text-white">
-                            <svg className="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 21 16">
-                                    <path d="M16.942 1.556a16.3 16.3 0 0 0-4.126-1.3 12.04 12.04 0 0 0-.529 1.1 15.175 15.175 0 0 0-4.573 0 11.585 11.585 0 0 0-.535-1.1 16.274 16.274 0 0 0-4.129 1.3A17.392 17.392 0 0 0 .182 13.218a15.785 15.785 0 0 0 4.963 2.521c.41-.564.773-1.16 1.084-1.785a10.63 10.63 0 0 1-1.706-.83c.143-.106.283-.217.418-.33a11.664 11.664 0 0 0 10.118 0c.137.113.277.224.418.33-.544.328-1.116.606-1.71.832a12.52 12.52 0 0 0 1.084 1.785 16.46 16.46 0 0 0 5.064-2.595 17.286 17.286 0 0 0-2.973-11.59ZM6.678 10.813a1.941 1.941 0 0 1-1.8-2.045 1.93 1.93 0 0 1 1.8-2.047 1.919 1.919 0 0 1 1.8 2.047 1.93 1.93 0 0 1-1.8 2.045Zm6.644 0a1.94 1.94 0 0 1-1.8-2.045 1.93 1.93 0 0 1 1.8-2.047 1.918 1.918 0 0 1 1.8 2.047 1.93 1.93 0 0 1-1.8 2.045Z"/>
-                                </svg>
-                            <span className="sr-only">Discord community</span>
-                        </a>
-                        <a href="#" className="text-gray-500 hover:text-blue-500 dark:hover:text-white ms-5">
-                            <svg className="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 17">
-                                <path fillRule="evenodd" d="M20 1.892a8.178 8.178 0 0 1-2.355.635 4.074 4.074 0 0 0 1.8-2.235 8.344 8.344 0 0 1-2.605.98A4.13 4.13 0 0 0 13.85 0a4.068 4.068 0 0 0-4.1 4.038 4 4 0 0 0 .105.919A11.705 11.705 0 0 1 1.4.734a4.006 4.006 0 0 0 1.268 5.392 4.165 4.165 0 0 1-1.859-.5v.05A4.057 4.057 0 0 0 4.1 9.635a4.19 4.19 0 0 1-1.856.07 4.108 4.108 0 0 0 3.831 2.807A8.36 8.36 0 0 1 0 14.184 11.732 11.732 0 0 0 6.291 16 11.502 11.502 0 0 0 17.964 4.5c0-.177 0-.35-.012-.523A8.143 8.143 0 0 0 20 1.892Z" clipRule="evenodd"/>
+                <h4 className="text-lg font-inter font-semibold text-gray-900 ml-5 capitalize transition-all duration-500 group-hover:text-indigo-600 md:ml-4 md:text-xl xl:ml-0">{name}</h4>
+                <span className="text-md text-gray-500 font-inter ml-5 block transition-all duration-500 group-hover:text-gray-900 md:ml-4 md:text-xl xl:ml-0">{role}</span>
+                <div className='flex ml-5 pt-10 md:ml-4 xl:ml-0'>
+                    {linkedin && (
+                        <a href={linkedin} className="text-gray-500 hover:text-blue-500 dark:hover:text-white" target="_blank">
+                            <svg className="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.73V1.73C24 .77 23.21 0 22.23 0zm-6.43 20.48h-3.64v-5.91c0-1.41-.03-3.22-1.96-3.22-1.97 0-2.27 1.53-2.27 3.11v6.02H6.28V8.98h3.5v1.57h.05c.49-.92 1.68-1.89 3.45-1.89 3.69 0 4.37 2.43 4.37 5.6v6.22h-.01zM5.34 7.46c-1.17 0-2.12-.96-2.12-2.14 0-1.17.95-2.14 2.12-2.14 1.18 0 2.13.96 2.13 2.14 0 1.18-.96 2.14-2.13 2.14zM4.11 8.98h2.46v11.5H4.11V8.98z"/>
                             </svg>
-                            <span className="sr-only">Twitter page</span>
+                            <span className="sr-only">LinkedIn page</span>
                         </a>
-                        <a href="#" className="text-gray-500 hover:text-blue-500 dark:hover:text-white ms-5">
+                    )}
+                    {instagram && (
+                        <a href={instagram} className="text-gray-500 hover:text-blue-500 dark:hover:text-white ms-5" target="_blank">
+                            <svg className="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2.16c3.2 0 3.584.012 4.85.07 1.17.054 1.964.247 2.423.415.578.203.99.447 1.42.874.427.428.67.841.874 1.42.168.459.36 1.253.415 2.423.058 1.266.07 1.65.07 4.85s-.012 3.584-.07 4.85c-.054 1.17-.247 1.964-.415 2.423a3.494 3.494 0 0 1-.874 1.42c-.428.427-.841.67-1.42.874-.459.168-1.253.36-2.423.415-1.266.058-1.65.07-4.85.07s-3.584-.012-4.85-.07c-1.17-.054-1.964-.247-2.423-.415a3.494 3.494 0 0 1-1.42-.874c-.427-.428-.67-.841-.874-1.42-.168-.459-.36-1.253-.415-2.423-.058-1.266-.07-1.65-.07-4.85s.012-3.584.07-4.85c.054-1.17.247-1.964.415-2.423a3.494 3.494 0 0 1 .874-1.42c.428-.427.841-.67 1.42-.874.459-.168 1.253-.36 2.423-.415C8.416 2.172 8.8 2.16 12 2.16zm0-2.16C8.734 0 8.332.014 7.052.072c-1.312.06-2.223.26-3.007.552a5.608 5.608 0 0 0-2.013 1.32A5.608 5.608 0 0 0 .712 3.957c-.292.784-.492 1.695-.552 3.007C.014 8.332 0 8.734 0 12c0 3.266.014 3.668.072 4.948.06 1.312.26 2.223.552 3.007a5.608 5.608 0 0 0 1.32 2.013 5.608 5.608 0 0 0 2.013 1.32c.784.292 1.695.492 3.007.552 1.28.058 1.682.072 4.948.072s3.668-.014 4.948-.072c1.312-.06 2.223-.26 3.007-.552a5.608 5.608 0 0 0 2.013-1.32 5.608 5.608 0 0 0 1.32-2.013c.292-.784.492-1.695.552-3.007.058-1.28.072-1.682.072-4.948s-.014-3.668-.072-4.948c-.06-1.312-.26-2.223-.552-3.007a5.608 5.608 0 0 0-1.32-2.013 5.608 5.608 0 0 0-2.013-1.32c-.784-.292-1.695-.492-3.007-.552C15.668.014 15.266 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32zm0 10.16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-11.6a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z"/>
+                            </svg>
+                            <span className="sr-only">Instagram page</span>
+                        </a>
+                    )}
+                    {github && (
+                        <a href={github} className="text-gray-500 hover:text-blue-500 dark:hover:text-white ms-5" target="_blank">
                             <svg className="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fillRule="evenodd" d="M10 .333A9.911 9.911 0 0 0 6.866 19.65c.5.092.678-.215.678-.477 0-.237-.01-1.017-.014-1.845-2.757.6-3.338-1.169-3.338-1.169a2.627 2.627 0 0 0-1.1-1.451c-.9-.615.07-.6.07-.6a2.084 2.084 0 0 1 1.518 1.021 2.11 2.11 0 0 0 2.884.823c.044-.503.268-.973.63-1.325-2.2-.25-4.516-1.1-4.516-4.9A3.832 3.832 0 0 1 4.7 7.068a3.56 3.56 0 0 1 .095-2.623s.832-.266 2.726 1.016a9.409 9.409 0 0 1 4.962 0c1.89-1.282 2.717-1.016 2.717-1.016.366.83.402 1.768.1 2.623a3.827 3.827 0 0 1 1.02 2.659c0 3.807-2.319 4.644-4.525 4.889a2.366 2.366 0 0 1 .673 1.834c0 1.326-.012 2.394-.012 2.72 0 .263.18.572.681.475A9.911 9.911 0 0 0 10 .333Z" clipRule="evenodd"/>
+                                <path fillRule="evenodd" d="M10 .333A9.911 9.911 0 0 0 6.866 19.65c.5.092.678-.215.678-.477 0-.237-.01-1.017-.014-1.845-2.757.6-3.338-1.169-3.338-1.169a2.627 2.627 0 0 0-1.1-1.451c-.9-.615.07-.6.07-.6a2.084 2.084 0 0 1 1.518 1.021 2.11 2.11 0 0 0 2.884.823c.044-.503.268-.973.63-1.325-2.2-.25-4.516-1.1-4.516-4.9A3.832 3.832 0 0 1 4.7 7.068a3.56 3.56 0 0 1 .095-2.623s.832-.266 2.726 1.016a9.409 9.409 0 0 1 4.962 0c1.89-1.282 2.717-1.016 2.717-1.016.366.83.402 1.768.1 2.623a3.827 3.827 0 0 1 1.02 2.659c0 3.807-2.319 4.644-4.525 4.889a2.366 2.366 0 0 1 .673 1.834c0 1.326-.012 2.394-.012 2.72 0 .263.18.572.681.475A9.911 9.911 0 0 0 10 .333Z" clipRule="evenodd"/>
                             </svg>
                             <span className="sr-only">GitHub account</span>
                         </a>
-                    </div>
+                    )}
                 </div>
+            </div>
         </div>
     );
 };
 
 const OurTeam = () => {
     const teamMembers = [
-        { name: 'Ahmad Badar', role: 'Front-End', image: 'https://pagedone.io/asset/uploads/1696238374.png' },
-        { name: 'Merliana Tri Susilowati', role: 'Front-End', image: 'https://pagedone.io/asset/uploads/1696238396.png' },
-        { name: 'Muhammad Amar Dafi', role: 'Back-End', image: 'https://pagedone.io/asset/uploads/1696238374.png' }
+        {
+            name: 'Ahmad Badar',
+            role: 'Front-End',
+            image: Badar,
+            linkedin: 'https://www.linkedin.com/in/ahmad-badar-167aa7220',
+            instagram: 'https://www.instagram.com/ahmadbadarr',
+            github: 'https://github.com/ahmadbadar13'
+        },
+        {
+            name: 'Merliana Tri Susilowati',
+            role: 'Front-End',
+            image: Merliana,
+            linkedin: 'https://www.linkedin.com/in/merlianatris',
+            instagram: 'https://www.instagram.com/merlianats',
+            github: 'https://github.com/merlianats'
+        },
+        {
+            name: 'Muhammad Amar Dafi',
+            role: 'Back-End',
+            image: Amar,
+            linkedin: 'https://www.linkedin.com/in/muhammad-amar-dafi',
+            instagram: 'https://www.instagram.com/muhammad.amar.dafi',
+            github: 'https://github.com/amar-ti2021'
+        }
     ];
 
     return (
