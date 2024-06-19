@@ -1,10 +1,9 @@
-// AuthController.mjs (assuming .mjs for ECMAScript modules)
 import dotenv from "dotenv";
 dotenv.config();
 const { JWT_SECRET_KEY } = process.env;
 import { nanoid } from "nanoid";
 import jwt from "jsonwebtoken";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import Validator from "../core/Validator.js";
 import Auth from "../models/Auth.js";
 
