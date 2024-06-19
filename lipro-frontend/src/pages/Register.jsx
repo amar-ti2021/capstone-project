@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Logo from "../assets/logo-lipro.png";
 import { useNavigate, Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import 'sweetalert2/src/sweetalert2.scss' 
 
 const Register = () => {
     const [email, setEmail] = useState('');
@@ -26,11 +28,25 @@ const Register = () => {
             const data = await response.json();
             if (response.ok) {
                 // Registrasi berhasil, arahkan ke halaman Login
+                await Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Sign Up Successful',
+                    showConfirmButton: false,
+                    timer: 1500,
+                    customClass: {
+                        popup: 'animate__animated animate__bounceIn',
+                    },
+                });
                 console.log('Registrasi berhasil:', data);
                 navigate('/login');
             } else {
                 // Registrasi gagal, menampilkan pesan error
-                console.error('Registrasi gagal:', data);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Email or Password Does Not Match!',
+                    text: 'Try Again!',
+                });
             }
         } catch (error) {
             console.error('Error:', error);
