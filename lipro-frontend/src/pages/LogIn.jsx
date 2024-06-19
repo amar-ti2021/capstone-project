@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import Logo from "../assets/logo-lipro.png";
 import { useNavigate, Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import 'sweetalert2/src/sweetalert2.scss'   
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -20,18 +22,32 @@ const Login = () => {
             });
             const data = await response.json();
             if (response.ok) {
-                // Login berhasil, arahkan ke halaman Dashboard
-                console.log('Login berhasil:', data);
+                await Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Login Successful',
+                    showConfirmButton: false,
+                    timer: 1500,
+                    customClass: {
+                        popup: 'animate__animated animate__bounceIn',
+                    },
+                });
+    
+                // Setelah SweetAlert ditutup, arahkan ke halaman Dashboard
                 localStorage.setItem('token', data.token);
                 navigate('/dashboard');
             } else {
-                // Login gagal, menampilkan pesan error
-                console.error('Login gagal:', data);
+                // Menampilkan SweetAlert 2 untuk login gagal
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Incorrect Email or Password!',
+                    text: 'Try Again!',
+                });
             }
         } catch (error) {
             console.error('Error:', error);
         }
-    };
+    };    
 
     return (
         <div className="min-h-screen bg-gray-100 text-gray-900 flex justify-center">

@@ -3,6 +3,8 @@ import Logo from "../assets/logo-lipro.png";
 import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import Swal from 'sweetalert2';
+import 'sweetalert2/src/sweetalert2.scss'
 
 const Dashboard = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -131,9 +133,41 @@ const Dashboard = () => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("tasks");
-    navigate("/");
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+            confirmButton: 'btn btn-success',
+            cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: true
+    });
+
+    swalWithBootstrapButtons.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, logout!',
+        cancelButtonText: 'No, cancel!',
+        reverseButtons: true
+    }).then((result) => {
+        if (result.isConfirmed) {
+            swalWithBootstrapButtons.fire({
+                title: 'Logged Out!',
+                text: 'You have been logged out.',
+                icon: 'success'
+            }).then(() => {
+                localStorage.removeItem('token');
+                localStorage.removeItem('tasks');
+                navigate('/');
+            });
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+            swalWithBootstrapButtons.fire({
+                title: 'Cancelled',
+                text: 'Your session is safe :)',
+                icon: 'error'
+            });
+        }
+    });
   };
 
   const formatTime = (hours, minutes) => {
