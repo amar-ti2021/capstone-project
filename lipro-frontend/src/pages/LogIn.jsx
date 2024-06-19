@@ -76,9 +76,6 @@ const Login = () => {
                                     Don’t have an account?
                                     <Link to="/register" className="px-2 text-blue-600">Sign up</Link>
                                 </div>
-                                <div>
-                                    <Link to="/reset-password" className="inline-block text-sm px-2 tracking-wide font-medium text-blue-600 transform translate-y-1/2">Forgot Password</Link>
-                                </div>
                             </div>
                         </div>
                     </div>
