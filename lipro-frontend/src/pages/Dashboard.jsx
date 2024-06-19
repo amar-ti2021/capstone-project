@@ -279,7 +279,7 @@ const Dashboard = () => {
           </div>
         </div>
       </nav>
-      <div className="mx-auto px-6 py-8 bg-gradient-to-b from-bright-blue to-soft-blue2">
+      <div className="mx-auto px-6 py-8 bg-gradient-to-b from-bright-blue to-soft-blue2 min-h-screen xl:min-h-screen xl:px-12 xl:py-16">
         <div className="bg-white rounded-lg">
           <div className="flex flex-wrap items-center justify-between mx-auto">
             <h3 className="text-lg font-inter font-semibold px-8 pt-4 md:px-8 md:py-4 md:text-xl">

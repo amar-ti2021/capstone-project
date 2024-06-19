@@ -182,7 +182,7 @@ const Statistic = () => {
           </div>
         </div>
       </nav>
-      <div className="mx-auto px-6 py-8 bg-gradient-to-b from-bright-blue to-soft-blue2">
+      <div className="mx-auto px-6 py-8 bg-gradient-to-b from-bright-blue to-soft-blue2 min-h-screen xl:min-h-screen xl:px-12 xl:py-16">
         <div className="max-w-lg mx-auto">
           <div id="bar-chart"></div>
         </div>

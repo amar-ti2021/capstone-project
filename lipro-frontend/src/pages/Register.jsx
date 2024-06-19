@@ -85,6 +85,7 @@ const Register = () => {
                     value={rePassword}
                     onChange={(e) => setRePassword(e.target.value)}
                   />
+                  <p className="text-gray-600 text-xs mt-3">The password must be at least 8 characters and have uppercase letters and numbers.</p>
                   <button
                     type="submit"
                     className="mt-5 tracking-wide font-semibold bg-bright-blue text-gray-100 w-full py-4 rounded-full hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
