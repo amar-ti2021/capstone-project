@@ -63,7 +63,7 @@ const Statistic = () => {
   };
 
   const fetchStatistic = async () => {
-    const URL = "http://127.0.0.1:3000/api/v1/protected/statistics";
+    const URL = "https://api.lipro.my.id/v1/protected/statistics";
     const token = localStorage.getItem("token");
     const response = await fetch(URL, {
       method: "GET",

@@ -3,8 +3,8 @@ import Logo from "../assets/logo-lipro.png";
 import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
-import Swal from 'sweetalert2';
-import 'sweetalert2/src/sweetalert2.scss'
+import Swal from "sweetalert2";
+import "sweetalert2/src/sweetalert2.scss";
 
 const Dashboard = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -81,7 +81,7 @@ const Dashboard = () => {
       status: "in_progress",
     };
     const newTasks = [...tasks, task];
-    const URL = "http://localhost:3000/api/v1/protected/tasks";
+    const URL = "https://api.lipro.my.id/v1/protected/tasks";
     const token = localStorage.getItem("token");
     const response = await fetch(URL, {
       method: "POST",
@@ -92,8 +92,7 @@ const Dashboard = () => {
       body: JSON.stringify(task),
     });
     const result = await response.json();
-
-    console.log(result);
+    console.log();
     setTasks(newTasks);
     localStorage.setItem("tasks", JSON.stringify(newTasks));
     setTaskName("");
@@ -104,7 +103,7 @@ const Dashboard = () => {
   };
 
   const fetchTasks = async () => {
-    const URL = "http://127.0.0.1:3000/api/v1/protected/tasks/today";
+    const URL = "https://api.lipro.my.id/v1/protected/tasks/today";
     const token = localStorage.getItem("token");
     const response = await fetch(URL, {
       method: "GET",
@@ -134,40 +133,44 @@ const Dashboard = () => {
 
   const handleLogout = () => {
     const swalWithBootstrapButtons = Swal.mixin({
-        customClass: {
-            confirmButton: 'btn btn-success',
-            cancelButton: 'btn btn-danger'
-        },
-        buttonsStyling: true
+      customClass: {
+        confirmButton: "btn btn-success",
+        cancelButton: "btn btn-danger",
+      },
+      buttonsStyling: true,
     });
 
-    swalWithBootstrapButtons.fire({
-        title: 'Are you sure?',
+    swalWithBootstrapButtons
+      .fire({
+        title: "Are you sure?",
         text: "You won't be able to revert this!",
-        icon: 'warning',
+        icon: "warning",
         showCancelButton: true,
-        confirmButtonText: 'Yes, logout!',
-        cancelButtonText: 'No, cancel!',
-        reverseButtons: true
-    }).then((result) => {
+        confirmButtonText: "Yes, logout!",
+        cancelButtonText: "No, cancel!",
+        reverseButtons: true,
+      })
+      .then((result) => {
         if (result.isConfirmed) {
-            swalWithBootstrapButtons.fire({
-                title: 'Logged Out!',
-                text: 'You have been logged out.',
-                icon: 'success'
-            }).then(() => {
-                localStorage.removeItem('token');
-                localStorage.removeItem('tasks');
-                navigate('/');
+          swalWithBootstrapButtons
+            .fire({
+              title: "Logged Out!",
+              text: "You have been logged out.",
+              icon: "success",
+            })
+            .then(() => {
+              localStorage.removeItem("token");
+              localStorage.removeItem("tasks");
+              navigate("/");
             });
         } else if (result.dismiss === Swal.DismissReason.cancel) {
-            swalWithBootstrapButtons.fire({
-                title: 'Cancelled',
-                text: 'Your session is safe :)',
-                icon: 'error'
-            });
+          swalWithBootstrapButtons.fire({
+            title: "Cancelled",
+            text: "Your session is safe :)",
+            icon: "error",
+          });
         }
-    });
+      });
   };
 
   const formatTime = (hours, minutes) => {
@@ -202,7 +205,7 @@ const Dashboard = () => {
   const setDoneTask = async (task) => {
     task.status = "completed";
     const newTasks = [...tasks, task];
-    const URL = `http://localhost:3000/api/v1/protected/tasks/${task.id}`;
+    const URL = `https://api.lipro.my.id/v1/protected/tasks/${task.id}`;
     const token = localStorage.getItem("token");
     const response = await fetch(URL, {
       method: "PUT",
