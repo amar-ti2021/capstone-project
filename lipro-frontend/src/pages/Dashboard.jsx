@@ -1,165 +1,185 @@
-import React, { useState, useEffect } from 'react'
-import Logo from '../assets/logo-lipro.png'
-import { Link, useNavigate } from 'react-router-dom'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import React, { useState, useEffect } from "react";
+import Logo from "../assets/logo-lipro.png";
+import { Link, useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
 const Dashboard = () => {
-  const [menuOpen, setMenuOpen] = useState(false)
-  const [isModalOpen, setIsModalOpen] = useState(false)
-  const [taskName, setTaskName] = useState('')
-  const [startTime, setStartTime] = useState('')
-  const [endTime, setEndTime] = useState('')
-  const [tasks, setTasks] = useState([])
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [taskName, setTaskName] = useState("");
+  const [startTime, setStartTime] = useState("");
+  const [endTime, setEndTime] = useState("");
+  const [tasks, setTasks] = useState([]);
   const [totalWorkingHours, setTotalWorkingHours] = useState({
     hours: 0,
-    minutes: 0
-  })
-  const [time, setTime] = useState(new Date().toLocaleTimeString('en-US', { hour12: true, hourCycle: 'h12' }))
-  const [date, setDate] = useState(new Date().toLocaleDateString())
-  const [day, setDay] = useState(new Date().getDay())
-  const navigate = useNavigate()
+    minutes: 0,
+  });
+  const [time, setTime] = useState(
+    new Date().toLocaleTimeString("en-US", { hour12: true, hourCycle: "h12" })
+  );
+  const [date, setDate] = useState(new Date().toLocaleDateString());
+  const [day, setDay] = useState(new Date().getDay());
+  const navigate = useNavigate();
 
-  const [inProgressTasksCount, setInProgressTasksCount] = useState(0)
-  const [nextTaskCount, setNextTaskCount] = useState(0)
-  const [doneTasksCount, setDoneTasksCount] = useState(0)
+  const [inProgressTasksCount, setInProgressTasksCount] = useState(0);
+  const [nextTaskCount, setNextTaskCount] = useState(0);
+  const [doneTasksCount, setDoneTasksCount] = useState(0);
 
   const weekDays = [
-    'Sunday',
-    'Monday',
-    'Tuesday',
-    'Wednesday',
-    'Thursday',
-    'Friday',
-    'Saturday'
-  ]
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
 
   useEffect(() => {
     const timeInterval = setInterval(
-        () => setTime(new Date().toLocaleTimeString('en-US', { hour12: true, hourCycle: 'h12' })),
+      () =>
+        setTime(
+          new Date().toLocaleTimeString("en-US", {
+            hour12: true,
+            hourCycle: "h12",
+          })
+        ),
       1000
-    )
+    );
     const dateInterval = setInterval(
       () => setDate(new Date().toLocaleDateString()),
       1000
-    )
-    const dayInterval = setInterval(() => setDay(new Date().getDay()), 1000)
-    fetchTasks()
+    );
+    const dayInterval = setInterval(() => setDay(new Date().getDay()), 1000);
+    fetchTasks();
     return () => {
-      clearInterval(timeInterval)
-      clearInterval(dateInterval)
-      clearInterval(dayInterval)
-    }
-  }, [])
+      clearInterval(timeInterval);
+      clearInterval(dateInterval);
+      clearInterval(dayInterval);
+    };
+  }, []);
 
   useEffect(() => {
-    calculateTotalWorkingHours(tasks)
-    getCurrentTaskStatus()
-  }, [tasks])
+    calculateTotalWorkingHours(tasks);
+    getCurrentTaskStatus();
+  }, [tasks]);
 
-  const toggleMenu = () => setMenuOpen(!menuOpen)
-  const openModal = () => setIsModalOpen(true)
-  const closeModal = () => setIsModalOpen(false)
+  const toggleMenu = () => setMenuOpen(!menuOpen);
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
 
   const handleAddTask = async () => {
-    const today = new Date().toDateString()
+    const today = new Date().toDateString();
 
     const task = {
       task: taskName,
       start_time: `${today} ${startTime}`,
       end_time: `${today} ${endTime}`,
-      status: 'in_progress'
-    }
-    const newTasks = [...tasks, task]
-    const URL = 'http://localhost:3000/api/v1/protected/tasks'
-    const token = localStorage.getItem('token')
+      status: "in_progress",
+    };
+    const newTasks = [...tasks, task];
+    const URL = "http://localhost:3000/api/v1/protected/tasks";
+    const token = localStorage.getItem("token");
     const response = await fetch(URL, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        Authorization: token
+        "Content-Type": "application/json",
+        Authorization: token,
       },
-      body: JSON.stringify(task)
-    })
-    const result = await response.json()
+      body: JSON.stringify(task),
+    });
+    const result = await response.json();
 
-    console.log(result)
-    setTasks(newTasks)
-    localStorage.setItem('tasks', JSON.stringify(newTasks))
-    setTaskName('')
-    setStartTime('')
-    setEndTime('')
-    closeModal()
-    calculateTotalWorkingHours(newTasks)
-  }
+    console.log(result);
+    setTasks(newTasks);
+    localStorage.setItem("tasks", JSON.stringify(newTasks));
+    setTaskName("");
+    setStartTime("");
+    setEndTime("");
+    closeModal();
+    calculateTotalWorkingHours(newTasks);
+  };
 
   const fetchTasks = async () => {
-    const URL = 'http://127.0.0.1:3000/api/v1/protected/tasks/today'
-    const token = localStorage.getItem('token')
+    const URL = "http://127.0.0.1:3000/api/v1/protected/tasks/today";
+    const token = localStorage.getItem("token");
     const response = await fetch(URL, {
-      method: 'GET',
+      method: "GET",
       headers: {
-        Authorization: `${token}`
-      }
-    })
-    const result = await response.json()
-    if (result.status == 'success') {
-      setTasks(result.data)
+        Authorization: `${token}`,
+      },
+    });
+    const result = await response.json();
+    if (result.status == "success") {
+      setTasks(result.data);
     }
-  }
+  };
 
   const calculateTotalWorkingHours = (tasks) => {
-    let totalMinutes = 0
+    let totalMinutes = 0;
     tasks.forEach((task) => {
-      const start = new Date(`${task.start_time}`)
-      const end = new Date(`${task.end_time}`)
-      const diff = (end - start) / (1000 * 60) // Selisih dalam menit
-      totalMinutes += diff
-    })
+      const start = new Date(`${task.start_time}`);
+      const end = new Date(`${task.end_time}`);
+      const diff = (end - start) / (1000 * 60); // Selisih dalam menit
+      totalMinutes += diff;
+    });
 
-    const hours = Math.floor(totalMinutes / 60)
-    const minutes = totalMinutes % 60
-    setTotalWorkingHours({ hours, minutes })
-  }
+    const hours = Math.floor(totalMinutes / 60);
+    const minutes = totalMinutes % 60;
+    setTotalWorkingHours({ hours, minutes });
+  };
 
   const handleLogout = () => {
-    localStorage.removeItem('token')
-    localStorage.removeItem('tasks')
-    navigate('/')
-  }
+    localStorage.removeItem("token");
+    localStorage.removeItem("tasks");
+    navigate("/");
+  };
 
   const formatTime = (hours, minutes) => {
-    return `${hours} Hours ${minutes} Minutes`
-  }
+    return `${hours} Hours ${minutes} Minutes`;
+  };
 
   const getCurrentTaskStatus = () => {
-    const currentTime = new Date()
+    const currentTime = new Date();
     setInProgressTasksCount(
       tasks.filter((task) => {
-        const start = new Date(`${task.start_time}`)
-        const end = new Date(`${task.end_time}`)
-        return currentTime >= start && currentTime <= end
+        return task.status === "in_progress";
       }).length
-    )
+    );
     setNextTaskCount(
       tasks.filter((task) => {
-        const start = new Date(`${task.start_time}`)
-        return currentTime < start
+        const start = new Date(`${task.start_time}`);
+        return currentTime < start;
       }).length
-    )
+    );
     setDoneTasksCount(
       tasks.filter((task) => {
-        const end = new Date(`${task.end_time}`)
-        return currentTime > end
+        return task.status === "completed";
       }).length
-    )
-  }
+    );
+  };
 
   const sortedTasks = [...tasks].sort((a, b) => {
-    const aStart = new Date(`${a.start_time}`)
-    const bStart = new Date(`${b.end_time}`)
-    return aStart - bStart
-  })
+    const aStart = new Date(`${a.start_time}`);
+    const bStart = new Date(`${b.end_time}`);
+    return aStart - bStart;
+  });
+  const setDoneTask = async (task) => {
+    task.status = "completed";
+    const newTasks = [...tasks, task];
+    const URL = `http://localhost:3000/api/v1/protected/tasks/${task.id}`;
+    const token = localStorage.getItem("token");
+    const response = await fetch(URL, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      },
+      body: JSON.stringify(task),
+    });
+    const result = await response.json();
+  };
 
   return (
     <div>
@@ -190,7 +210,7 @@ const Dashboard = () => {
           </div>
           <div
             className={`w-full md:w-auto md:flex ${
-              menuOpen ? 'block' : 'hidden'
+              menuOpen ? "block" : "hidden"
             }`}
           >
             <ul className="font-medium text-lg flex flex-col p-4 md:p-0 mt-4 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0">
@@ -269,23 +289,40 @@ const Dashboard = () => {
               Task Lists
             </h3>
             <ul>
-                {sortedTasks.map((task, index) => (
-                    <li key={index} className="bg-pure-blue p-2 rounded mb-2 flex justify-between items-center">
+              {sortedTasks.map((task, index) => {
+                return task.status == "in_progress" ? (
+                  <li
+                    key={index}
+                    className="bg-pure-blue p-2 rounded mb-2 flex justify-between items-center"
+                  >
                     <div>
-                        <p className="font-medium font-inter text-white">
+                      <p className="font-medium font-inter text-white">
                         {task.task}
-                        </p>
-                        <p className="text-white font-inter">
-                        {new Date(task.start_time).toLocaleTimeString('en-US', { hour12: true, hourCycle: 'h12' })} -{' '}
-                        {new Date(task.end_time).toLocaleTimeString('en-US', { hour12: true, hourCycle: 'h12' })}
-                        </p>
+                      </p>
+                      <p className="text-white font-inter">
+                        {new Date(task.start_time).toLocaleTimeString("en-US", {
+                          hour12: true,
+                          hourCycle: "h12",
+                        })}{" "}
+                        -{" "}
+                        {new Date(task.end_time).toLocaleTimeString("en-US", {
+                          hour12: true,
+                          hourCycle: "h12",
+                        })}
+                      </p>
                     </div>
-                    <button className="ml-4 bg-white text-pure-blue p-2 rounded">
-                        <FontAwesomeIcon icon={faCheck} />
+                    <button
+                      className="ml-4 bg-white text-pure-blue p-2 rounded"
+                      onClick={() => setDoneTask(task)}
+                    >
+                      <FontAwesomeIcon icon={faCheck} />
                     </button>
-                    </li>
-                ))}
-                </ul>
+                  </li>
+                ) : (
+                  ""
+                );
+              })}
+            </ul>
             <button
               className="w-full mt-4 py-2 bg-blue-500 text-white font-semibold font-inter rounded-lg opacity-90 hover:opacity-80"
               onClick={openModal}
@@ -305,7 +342,7 @@ const Dashboard = () => {
                 >
                   <p className="font-medium font-inter">{task.task}</p>
                   <p className="font-inter">
-                    {new Date(task.start_time).toLocaleTimeString()} -{' '}
+                    {new Date(task.start_time).toLocaleTimeString()} -{" "}
                     {new Date(task.end_time).toLocaleTimeString()}
                   </p>
                 </div>
@@ -326,8 +363,8 @@ const Dashboard = () => {
             <h2 className="text-xl font-semibold mb-4">Add Task</h2>
             <form
               onSubmit={(e) => {
-                e.preventDefault()
-                handleAddTask()
+                e.preventDefault();
+                handleAddTask();
               }}
             >
               <div className="mb-4">
@@ -375,7 +412,7 @@ const Dashboard = () => {
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default Dashboard
+export default Dashboard;
